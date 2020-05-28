@@ -8,6 +8,7 @@ import {
   changeName,
   selectCurrent,
   selectName,
+  selectScore,
 } from './gameSlice'
 import Quiz from './Quiz'
 
@@ -16,6 +17,7 @@ const Game = (props) => {
   const current = useSelector(selectCurrent)
   const name = useSelector(selectName)
   const count = useSelector(selectQuestionCount)
+  const score = useSelector(selectScore)
 
   const [currentName, setCurrentName] = useState(name)
 
@@ -69,6 +71,8 @@ const Game = (props) => {
                 <Link to="/questions">Questions</Link>
               </p>
             ) : null}
+
+            {score > 0 ? <p>Your high score: {score}</p> : null}
 
             <button
               disabled={count === 0}

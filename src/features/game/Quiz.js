@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectQuestions } from '../questions/questionsSlice'
-import { changeCurrent } from './gameSlice'
+import { changeCurrent, changeScore, selectScore } from './gameSlice'
 import styles from './Quiz.module.css'
 
 export default (props) => {
   const dispatch = useDispatch()
+  const score = useSelector(selectScore)
 
   const questions = useSelector(selectQuestions)
   const [step, setStep] = useState(0)
@@ -67,6 +68,13 @@ export default (props) => {
               onClick={() => {
                 if (step + 1 === questions.length) {
                   dispatch(changeCurrent('IDLE'))
+                  if (points > score) {
+                    dispatch(changeScore(points))
+                  }
+
+                  setTimeout(() => {
+                    alert(`Congrats, your final score is ${points}`)
+                  }, 0)
                   return
                 }
 
