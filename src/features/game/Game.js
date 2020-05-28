@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { selectQuestionCount } from '../questions/questionsSlice'
 import styles from './Game.module.css'
 import {
@@ -14,9 +15,9 @@ const Game = (props) => {
   const dispatch = useDispatch()
   const current = useSelector(selectCurrent)
   const name = useSelector(selectName)
+  const count = useSelector(selectQuestionCount)
 
   const [currentName, setCurrentName] = useState(name)
-  const count = useSelector(selectQuestionCount)
 
   if ('INITIAL' === current) {
     return (
@@ -53,13 +54,29 @@ const Game = (props) => {
     return (
       <div {...props}>
         <div>
-          <div>
-            <h3>Hello {name}</h3>
+          <div className={styles.title}>
+            <h2>Hello {name}</h2>
             <button onClick={() => dispatch(changeCurrent('INITIAL'))}>
               Change name
             </button>
           </div>
-          <p>Question count: {count}</p>
+          <div className={styles.buttons}>
+            {count === 0 ? (
+              <p>
+                <span>
+                  You don't have any questions yet, please add some here:{' '}
+                </span>
+                <Link to="/questions">Questions</Link>
+              </p>
+            ) : null}
+
+            <button
+              disabled={count === 0}
+              onClick={() => dispatch(changeCurrent('GAME'))}
+            >
+              Start the Game
+            </button>
+          </div>
         </div>
       </div>
     )

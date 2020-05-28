@@ -199,7 +199,7 @@ li {
 input[type='text'] {
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background: rgba(120, 120, 120, 0.1);
+  background: rgba(128, 128, 128, 0.1);
 }
 button {
   padding: 0.5rem 1rem;
@@ -208,4 +208,13 @@ button {
   color: white;
   font-weight: bold;
   letter-spacing: 0.05rem;
+}
+button:disabled {
+  background: lightgray;
+}
+a {
+  text-decoration: underline;
+}
+a:hover {
+  color: purple;
 }
