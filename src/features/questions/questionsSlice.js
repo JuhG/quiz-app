@@ -4,12 +4,10 @@ import { loadObject, persistObject } from '../../helpers/localstorage'
 export const questionsSlice = createSlice({
   name: 'questions',
   initialState: {
-    list: [],
+    // in case this is async, we would need another reducer and a loading state
+    list: loadObject('questions', []),
   },
   reducers: {
-    load: (state) => {
-      state.list = loadObject('questions', [])
-    },
     add: (state, action) => {
       const { question, correct, ...answers } = action.payload
       const id = Date.now()

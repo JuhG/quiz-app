@@ -37,6 +37,7 @@ const Questions = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault()
+          // no "server" side validation
           dispatch(add(form))
         }}
       >
