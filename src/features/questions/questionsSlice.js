@@ -39,5 +39,6 @@ export const questionsSlice = createSlice({
 export const { add, remove, load } = questionsSlice.actions
 
 export const selectQuestions = (state) => state.questions.list
+export const selectQuestionCount = (state) => state.questions.list.length
 
 export default questionsSlice.reducer
