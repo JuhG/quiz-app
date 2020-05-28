@@ -33,3 +33,9 @@
 .button {
   width: 100%;
 }
+
+.nav {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
