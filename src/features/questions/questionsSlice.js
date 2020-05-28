@@ -1,38 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { loadObject, persistObject } from '../../helpers/localstorage'
 
 export const questionsSlice = createSlice({
   name: 'questions',
   initialState: {
-    list: [
-      {
-        id: 1,
-        question: 'Test question',
-        answers: [
-          {
-            id: 1,
-            correct: true,
-            text: 'Answer 1',
-          },
-          {
-            id: 2,
-            correct: false,
-            text: 'Answer 2',
-          },
-          {
-            id: 3,
-            correct: false,
-            text: 'Answer 3',
-          },
-          {
-            id: 4,
-            correct: false,
-            text: 'Answer 4',
-          },
-        ],
-      },
-    ],
+    list: [],
   },
   reducers: {
+    load: (state) => {
+      state.list = loadObject('questions', [])
+    },
     add: (state, action) => {
       const { question, correct, ...answers } = action.payload
       const id = Date.now()
@@ -50,14 +27,18 @@ export const questionsSlice = createSlice({
       }
 
       state.list = [...state.list, newItem]
+
+      persistObject('questions', state.list)
     },
     remove: (state, action) => {
       state.list = state.list.filter((item) => item.id !== action.payload)
+
+      persistObject('questions', state.list)
     },
   },
 })
 
-export const { add, remove } = questionsSlice.actions
+export const { add, remove, load } = questionsSlice.actions
 
 export const selectQuestions = (state) => state.questions.list
 
