@@ -1,0 +1,35 @@
+.wrapper {
+  width: 1000px;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.title {
+  padding: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  padding: 1rem;
+  width: 50%;
+}
+
+@media (max-width: 800px) {
+  .item {
+    width: 100vw;
+  }
+}
+
+.button {
+  width: 100%;
+}

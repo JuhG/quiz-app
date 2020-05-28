@@ -193,6 +193,10 @@ video {
  * GLOBAL styles
  */
 
+ul,
+ol {
+  padding-left: 0;
+}
 li {
   list-style: none;
 }

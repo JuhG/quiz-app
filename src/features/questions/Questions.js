@@ -30,7 +30,17 @@ const Questions = (props) => {
                 <li key={answer.id}>{answer.text}</li>
               ))}
             </ul>
-            <button onClick={() => dispatch(remove(item.id))}>Delete</button>
+            <button
+              onClick={() => {
+                if (
+                  window.confirm('Do you really want to delete this question?')
+                ) {
+                  dispatch(remove(item.id))
+                }
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
@@ -41,13 +51,20 @@ const Questions = (props) => {
           dispatch(add(form))
         }}
       >
-        <input required type="text" name="question" onChange={handleChange} />
+        <input
+          required
+          type="text"
+          maxLength="300"
+          name="question"
+          onChange={handleChange}
+        />
 
         {[1, 2, 3, 4].map((number) => (
           <div key={number}>
             <input
               required
               type="text"
+              maxLength="300"
               name={`answer-${number}`}
               onChange={handleChange}
             />

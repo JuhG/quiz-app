@@ -82,7 +82,11 @@ const Game = (props) => {
     )
   }
 
-  return <Quiz />
+  if ('GAME' === current && count > 0) {
+    return <Quiz {...props} />
+  }
+
+  return <button onClick={() => dispatch(changeCurrent('IDLE'))}>RESET</button>
 }
 
 export default Game
