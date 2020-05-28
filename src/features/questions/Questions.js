@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { add, remove, selectQuestions } from './questionsSlice'
 
-const Questions = () => {
+const Questions = (props) => {
   const questions = useSelector(selectQuestions)
   const dispatch = useDispatch()
   const [form, setForm] = useState({})
@@ -20,7 +20,7 @@ const Questions = () => {
   )
 
   return (
-    <div>
+    <div {...props}>
       <ul>
         {questions.map((item) => (
           <li key={item.id}>
